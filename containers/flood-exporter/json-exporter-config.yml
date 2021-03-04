@@ -1,0 +1,14 @@
+---
+metrics:
+- name: river_level
+  path: "{ .items }"
+  type: object
+  values:
+    measurement: "{ .measures[*].latestReading.value }"
+    max_on_record: "{ .stageScale.maxOnRecord.value }"
+    min_on_record: "{ .stageScale.minOnRecord.value }"
+  labels:
+    rloi_id: "{ .RLOIid }"
+    wiski_id: "{ .wiskiID }"
+    name: "{ .label }"
+    town: "{ .town }"
