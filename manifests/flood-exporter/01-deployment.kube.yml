@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flood-exporter
+spec:
+  selector:
+    matchLabels:
+      app: flood-exporter
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flood-exporter
+    spec:
+      containers:
+      - name: flood-exporter
+        image: ghcr.io/46bit/flood-exporter
+        ports:
+        - containerPort: 7979

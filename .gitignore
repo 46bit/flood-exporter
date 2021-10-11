@@ -1,0 +1,8 @@
+tmp
+kubeconfig
+*.log
+
+.terraform
+.terraform*
+*.tfstate
+*.tfstate*

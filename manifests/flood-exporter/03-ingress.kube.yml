@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flood-exporter
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/server-snippet: |
+      location /metrics {
+        return 403;
+      }
+spec:
+  tls:
+    - hosts:
+      - flood-exporter.46bit.cloud
+      secretName: flood-exporter-tls
+  rules:
+  - host: flood-exporter.46bit.cloud
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: flood-exporter
+            port:
+              name: http
